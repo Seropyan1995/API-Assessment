@@ -28,14 +28,14 @@ $(function () {
     var currentHour = today.hour();
     // loops over each div with the time block id
     $('.time-block').each(function () {
-      var timeBlockHour = parseInt($(this).attr("id").split("hour")[1]);
+      var blockHour = parseInt($(this).attr("id").split("hour")[1]);
       // if the time ID is before the current hour, add the past class from CSS
       if (blockHour < currentHour) {
         $(this).addClass('past');
         $(this).removeClass("future");
         $(this).removeClass("present");
      } // if the time ID is equal to the current hour, remove the past and future classes & add the present class
-      else if (timeBlockHour === currentHour) {
+      else if (blockHour === currentHour) {
         $(this).removeClass('past');
         $(this).removeClass('future');
         $(this).addClass('present');
