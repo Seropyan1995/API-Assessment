@@ -23,7 +23,35 @@ $(function () {
   $("#hour16 .description").val(localStorage.getItem("hour16"));
   $("#hour17 .description").val(localStorage.getItem("hour17"));
 
-
-
-  
+  function hourTracker() {
+    //var for the current hour
+    var currentHour = today.hour();
+    // loops over each div with the time block id
+    $('.time-block').each(function () {
+      var timeBlockHour = parseInt($(this).attr("id").split("hour")[1]);
+      // if the time ID is before the current hour, add the past class from CSS
+      if (blockHour < currentHour) {
+        $(this).addClass('past');
+        $(this).removeClass("future");
+        $(this).removeClass("present");
+     } // if the time ID is equal to the current hour, remove the past and future classes & add the present class
+      else if (timeBlockHour === currentHour) {
+        $(this).removeClass('past');
+        $(this).removeClass('future');
+        $(this).addClass('present');
+      } // If the time ID is greater than the current time, remove the past and present classes & add the future class
+      else {
+        $(this).removeClass('past');
+        $(this).removeClass('present');
+        $(this).addClass('future');
+      }
+    });
+  }
+//calls the hour tracker function to execute
+hourTracker();
+ // Use setTimeout to update the time every minute (1000ms * 60s)
+ setTimeout(function () {
+  // clears the current URL
+  location = ''; // location references the current URL
+}, 1000 * 60);
 });
